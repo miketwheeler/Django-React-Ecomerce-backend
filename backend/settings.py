@@ -125,6 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
+
+
+# list of pointers to custom static files
+STAICFILES_DIRS = [
+	BASE_DIR / 'static'
+]
+
+
+# uploads point of user saved media content
+MEDIA_ROOT = 'static/images'
 
 
 # whitelisted adresses - needs to be set
