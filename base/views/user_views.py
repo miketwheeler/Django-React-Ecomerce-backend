@@ -41,10 +41,11 @@ def registerUser(request):
 
 		)
 		serializer=UserSerializerWithToken(user, many=False)
+		return Response(serializer.data)
 	except:
 		message={'detail':'User with that email already exists'}
 		return Response(message, status=status.HTTP_400_BAD_REQUEST)
-	return Response(serializer.data)
+	
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
