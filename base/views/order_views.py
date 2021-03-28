@@ -59,15 +59,14 @@ def addOrderItems(request):
 		serializer = OrderSerializer(order, many=False)
 		return Response(serializer.data)
 
-	# return Response('ORDER') <<<probably delete this
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def getMyOrders(request, pk):
-#     user = request.user
-#     orders = user.order_set.all()
-#     serializer = OrderSerializer(orders, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getMyOrders(request, pk):
+    user = request.user
+    orders = user.order_set.all()
+    serializer = OrderSerializer(orders, many=True)
+    return Response(serializer.data)
 
 
 # @api_view(['GET'])
