@@ -41,14 +41,17 @@ def addOrderItems(request):
 
 		# create order items and st order to orderItem relationship
 		for i in orderItems:
-			product = Product.objects.get(_id=i['product'])
+			product = Product.objects.get(_id=i['product']) 
+			# above, the passed in val was ::  _id=i['product']
 
 			item = OrderItem.objects.create(
 				product=product,
 				order=order,
 				name=product.name,
 				qty=i['qty'],
+				# above, the assigned val was ::  i['qty']
 				price=i['price'],
+				# above, the assigned val was ::  i['price']
 				image=product.image.url,
 			)
 
