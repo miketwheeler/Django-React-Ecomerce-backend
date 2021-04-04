@@ -49,7 +49,7 @@ def updateProduct(request, pk):
 	product.price = data['price']
 	product.brand = data['brand']
 	product.countInStock = data['countInStock']
-	procuct.category = data['category']
+	product.category = data['category']
 	product.description = data['description']
 
 	product.save()
@@ -57,9 +57,21 @@ def updateProduct(request, pk):
 	serializer = ProductSerializer(product, many=False)
 	return Response(serializer.data)
 
-@api_view(['GET'])
+@api_view(['DELETE'])
 @permission_classes([IsAdminUser])
 def deleteProduct(request, pk):
 	product = Product.objects.get(_id=pk)
 	product.delete()
 	return Response("Product Deleted!")
+
+@api_view(['POST'])
+def uploadImage(request):
+	data = request.data
+	product_id = data['product_id']
+	product = Product.objects.get(_id=product_id)
+
+	product.image = request.FILES.get('image')
+	
+	product.save()
+
+	return Response('Image was uploaded successfully!')
