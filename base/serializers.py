@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
 		name = obj.first_name
 		if name == '':
 			name = obj.email
-
+		
 		return name
 
 
@@ -66,9 +66,10 @@ class OrderSerializer(serializers.ModelSerializer):
 
 	def get_shippingAddress(self, obj):
 		try:
-			address = ShippingAddressSerializer(obj.shippingaddress, many=False).data;
+			address = ShippingAddressSerializer(
+				obj.shippingaddress, many=False).data
 		except:
-			address = False;
+			address = False
 		return address
 
 	def get_user(self, obj):
