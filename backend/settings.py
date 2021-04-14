@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,7 +98,9 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+			os.path.join(BASE_DIR, 'frontend/build'),
+		],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -165,13 +168,16 @@ MEDIA_URL = '/images/'
 
 
 # list of pointers to custom static files
-STAICFILES_DIRS = [
-	BASE_DIR / 'static'
+STATICFILES_DIRS = [
+	BASE_DIR / 'static',
+	BASE_DIR / 'frontend/build/static',
 ]
 
 
 # uploads point of user saved media content
 MEDIA_ROOT = 'static/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 
 # whitelisted adresses - needs to be set
